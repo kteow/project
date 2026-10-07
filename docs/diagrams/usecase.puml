@@ -1,0 +1,60 @@
+@startuml usecase
+left to right direction
+
+actor "Сотрудник" as Employee
+actor "Администратор" as Admin
+
+package "Информационная система «Учёт отпусков»" {
+  ' ----- Сотрудник -----
+  usecase "Вход в систему" as E_Login
+  usecase "Просмотр личных данных" as E_Data
+  usecase "Просмотр истории своих отпусков" as E_History
+  usecase "Создание заявки" as E_Request
+  usecase "Выбор вида отпуска" as E_Type
+  usecase "Просмотр графика отпусков" as E_Schedule
+  usecase "Просмотр статуса заявки" as E_Status
+
+  ' ----- Администратор -----
+  usecase "Вход в систему (админ)" as A_Login
+  usecase "Формирование отчётов" as A_Reports
+  usecase "Меню сотрудников" as A_MenuEmp
+  usecase "Добавление сотрудника" as A_Add
+  usecase "Изменение данных сотрудника" as A_Edit
+  usecase "Удаление сотрудника" as A_Delete
+  usecase "Меню заявок" as A_MenuReq
+  usecase "Просмотр заявок" as A_ViewReq
+  usecase "Обработка заявки" as A_Process
+  usecase "Подтвердить заявку" as A_Confirm
+  usecase "Отклонить заявку" as A_Reject
+  usecase "Меню отпусков" as A_MenuVac
+  usecase "Создание графика отпусков" as A_MakeSchedule
+  usecase "Просмотр общего графика отпусков" as A_ViewSchedule
+  usecase "Учёт отпусков сотрудников" as A_Track
+}
+
+' ----- Связи сотрудника -----
+Employee --> E_Login
+E_Login --> E_Data
+E_Login --> E_Request
+E_Login --> E_Status
+E_Data ..> E_History : <<include>>
+E_Request ..> E_Type : <<include>>
+E_Request ..> E_Schedule : <<include>>
+
+' ----- Связи администратора -----
+Admin --> A_Login
+Admin --> A_Reports
+A_Login --> A_MenuEmp
+A_Login --> A_MenuReq
+A_Login --> A_MenuVac
+A_MenuEmp --> A_Add
+A_MenuEmp --> A_Edit
+A_MenuEmp --> A_Delete
+A_MenuReq --> A_ViewReq
+A_ViewReq --> A_Process
+A_Confirm ..> A_Process : <<extend>>
+A_Reject ..> A_Process : <<extend>>
+A_MenuVac --> A_MakeSchedule
+A_MenuVac --> A_Track
+A_MakeSchedule ..> A_ViewSchedule : <<include>>
+@enduml
