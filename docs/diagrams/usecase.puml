@@ -33,28 +33,28 @@ package "Информационная система «Учёт отпусков
 }
 
 ' ----- Связи сотрудника -----
-Employee --> E_Login
-E_Login --> E_Data
-E_Login --> E_Request
-E_Login --> E_Status
+Employee -- E_Login
+E_Login -- E_Data
+E_Login -- E_Request
+E_Login -- E_Status
 E_Data ..> E_History : <<include>>
 E_Request ..> E_Type : <<include>>
 E_Request ..> E_Schedule : <<include>>
 
 ' ----- Связи администратора -----
-Admin --> A_Login
-Admin --> A_Reports
-A_Login --> A_MenuEmp
-A_Login --> A_MenuReq
-A_Login --> A_MenuVac
-A_MenuEmp --> A_Add
-A_MenuEmp --> A_Edit
-A_MenuEmp --> A_Delete
-A_MenuReq --> A_ViewReq
-A_ViewReq --> A_Process
+Admin -- A_Login
+Admin -- A_Reports
+A_Login -- A_MenuEmp
+A_Login -- A_MenuReq
+A_Login -- A_MenuVac
+A_MenuEmp -- A_Add
+A_MenuEmp -- A_Edit
+A_MenuEmp -- A_Delete
+A_MenuReq -- A_ViewReq
+A_ViewReq -- A_Process
 A_Confirm ..> A_Process : <<extend>>
 A_Reject ..> A_Process : <<extend>>
-A_MenuVac --> A_MakeSchedule
-A_MenuVac --> A_Track
+A_MenuVac -- A_MakeSchedule
+A_MenuVac -- A_Track
 A_MakeSchedule ..> A_ViewSchedule : <<include>>
 @enduml
