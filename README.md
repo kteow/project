@@ -38,4 +38,4 @@
 ![Диаграмма Use Case](docs/diagrams/usecase.png)
 
 ## Автор
-Германскова Е.В., гр. 26-ИВТ-2-1. [Мой GitHub](https://github.com/kteow)
+Германскова Е.В., гр. 26-ИВТ-2-1.
